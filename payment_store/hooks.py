@@ -83,7 +83,7 @@ app_license = "mit"
 # ------------
 
 # before_install = "payment_store.install.before_install"
-# after_install = "payment_store.install.after_install"
+after_install = "payment_store.install.after_install"
 
 # Uninstallation
 # ------------
@@ -242,3 +242,7 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+	{"dt": "Role", "filters": [["name", "in", ["Payment Store Manager", "Payment Store Cashier", "Payment Store Auditor"]]]},
+	{"dt": "Workspace", "filters": [["name", "in", ["Payment Store"]]]}
+]

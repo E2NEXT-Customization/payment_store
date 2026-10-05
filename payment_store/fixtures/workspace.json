@@ -1,0 +1,41 @@
+[
+ {
+  "charts": [],
+  "content": "[]",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": null,
+  "hide_custom": 0,
+  "icon": null,
+  "indicator_color": "green",
+  "is_hidden": 0,
+  "label": "Payment Store",
+  "links": [],
+  "modified": "2026-10-05 12:19:03.568939",
+  "module": "Payment Store",
+  "name": "Payment Store",
+  "number_cards": [],
+  "parent_page": null,
+  "public": 0,
+  "quick_lists": [],
+  "restrict_to_domain": null,
+  "roles": [
+   {
+    "parent": "Payment Store",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Payment Store Manager"
+   },
+   {
+    "parent": "Payment Store",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Payment Store Cashier"
+   }
+  ],
+  "sequence_id": 0.0,
+  "shortcuts": [],
+  "title": "Payment Store"
+ }
+]
