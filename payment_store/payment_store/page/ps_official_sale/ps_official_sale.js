@@ -4,4 +4,9 @@ frappe.pages['ps-official-sale'].on_page_load = function(wrapper) {
 		title: 'بيع دولار – سعر رسمي',
 		single_column: true
 	});
+	new payment_store.DeskCore(page.main, {
+		page: page,
+		title: 'بيع دولار – سعر رسمي',
+		desk_type: 'official_sell'
+	});
 }

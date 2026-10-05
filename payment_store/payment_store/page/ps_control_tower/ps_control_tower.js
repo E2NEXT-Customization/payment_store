@@ -4,4 +4,9 @@ frappe.pages['ps-control-tower'].on_page_load = function(wrapper) {
 		title: 'برج المراقبة',
 		single_column: true
 	});
+	new payment_store.DeskCore(page.main, {
+		page: page,
+		title: 'برج المراقبة',
+		desk_type: 'control'
+	});
 }

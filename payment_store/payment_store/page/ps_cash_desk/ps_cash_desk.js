@@ -4,4 +4,9 @@ frappe.pages['ps-cash-desk'].on_page_load = function(wrapper) {
 		title: 'القاصة',
 		single_column: true
 	});
+	new payment_store.DeskCore(page.main, {
+		page: page,
+		title: 'القاصة',
+		desk_type: 'cash'
+	});
 }

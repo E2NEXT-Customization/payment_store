@@ -4,4 +4,9 @@ frappe.pages['ps-closing-desk'].on_page_load = function(wrapper) {
 		title: 'الجرد والإغلاق',
 		single_column: true
 	});
+	new payment_store.DeskCore(page.main, {
+		page: page,
+		title: 'الجرد والإغلاق',
+		desk_type: 'closing'
+	});
 }
