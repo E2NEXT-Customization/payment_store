@@ -6,3 +6,7 @@
 ## Phase 3: Ledger, WAC & Exchange Deal
 - **Decision:** Segregated WAC (Weighted Average Cost) and posting logic into the `accounting/` directory (`wac.py`, `posting.py`) to keep the `Exchange Deal` controller lightweight and easily testable.
 - **Decision:** Leveraged Frappe's unique property on `idempotency_key` in `Cashbox Ledger Entry` and `Exchange Deal` to enforce idempotency at the database layer.
+
+## Phase 4: Cashbox Transaction & Customer Accounts
+- **Decision:** Injected a Custom Field `ps_currency_accounts` (Customer Currency Account child table) into the standard `Customer` DocType instead of creating a separate parallel DocType. This keeps the UX unified and avoids duplication.
+- **Decision:** Added `Cashbox Transaction` with logic to support two-step transfers (via `transfer_status` and `incoming_transfer_reference`) built into the schema.

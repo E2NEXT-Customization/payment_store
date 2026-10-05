@@ -244,5 +244,6 @@ after_install = "payment_store.install.after_install"
 
 fixtures = [
 	{"dt": "Role", "filters": [["name", "in", ["Payment Store Manager", "Payment Store Cashier", "Payment Store Auditor"]]]},
-	{"dt": "Workspace", "filters": [["name", "in", ["Payment Store"]]]}
+	{"dt": "Workspace", "filters": [["name", "in", ["Payment Store"]]]},
+	{"dt": "Custom Field", "filters": [["dt", "=", "Customer"], ["fieldname", "=", "ps_currency_accounts"]]}
 ]
