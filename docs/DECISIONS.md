@@ -1,20 +1,12 @@
 # Architecture & Design Decisions
 
-## Phase 1: Scaffold
-- **Decision:** Used Frappe's `bench execute` with python script to seed initial Workspaces and roles to simplify scaffolding. Extracted the core to `install.py` to keep fresh installs working.
-- **Decision:** Added fixtures for `Role` and `Workspace` to ensure they track with the code. Tests are explicitly running with `--module` to avoid bleeding into standard Frappe tests.
-## Phase 3: Ledger, WAC & Exchange Deal
-- **Decision:** Segregated WAC (Weighted Average Cost) and posting logic into the `accounting/` directory (`wac.py`, `posting.py`) to keep the `Exchange Deal` controller lightweight and easily testable.
-- **Decision:** Leveraged Frappe's unique property on `idempotency_key` in `Cashbox Ledger Entry` and `Exchange Deal` to enforce idempotency at the database layer.
+## Strict Pivot (Section 3 rule applied)
+- **Decision:** Removed all micro-DocTypes (Reconciliation, Watchlist, Overrides, Ledger) and fully embraced the 6-DocType limit. Frappe GL Entries act as the sole ledger. Watchlist/Overrides are handled via compliance fields natively in the Deal and Settings.
 
-## Phase 4: Cashbox Transaction & Customer Accounts
-- **Decision:** Injected a Custom Field `ps_currency_accounts` (Customer Currency Account child table) into the standard `Customer` DocType instead of creating a separate parallel DocType. This keeps the UX unified and avoids duplication.
-- **Decision:** Added `Cashbox Transaction` with logic to support two-step transfers (via `transfer_status` and `incoming_transfer_reference`) built into the schema.
+## Phase 1 & 2: Scaffold, Settings, Rates & Cashbox
+- **Decision:** Used a unified setup script to structure the exact 6 allowed DocTypes (and their native child tables).
+- **Decision:** `Cashbox` relies on `locked_until` (set by closing) to prevent backdated entries, effectively functioning as a "Session" boundary without creating a separate DocType.
 
-## Phase 5: Desks & Workspace UI
-- **Decision:** Scaffolded all required desk Pages natively in Frappe and linked them to `Payment Store Manager` and `Payment Store Cashier` roles.
-- **Decision:** Extracted common desk component logic into a central reusable library `ps_desk_core.js` injected globally via `hooks.py`, ensuring consistent RTL, mobile-first design across all desks.
-
-## Phase 6: Reconciliation & Explainer Engine
-- **Decision:** Structured the Explainer Engine in dedicated `reconciliation` modules (`explainer.py`, `vectors.py`, `bisect.py`) to run deterministically offline via vector arithmetic, keeping the DocType logic clean and allowing independent unit testing.
-- **Decision:** Added `Denomination Count` as a reusable child table to enforce blind count per denomination.
+## Phase 3: Exchange Deal, WAC, and JE Posting
+- **Decision:** Implemented Weighted Average Cost (WAC) logic directly in the `Exchange Deal` controller. WAC is stored in `Payment Store Settings` per currency and updated via a strict `FOR UPDATE` lock to guarantee atomicity.
+- **Decision:** Multi-currency Journal Entries are posted synchronously `on_submit` and reversed perfectly `on_cancel` restoring the exact `wac_before` snapshot.
