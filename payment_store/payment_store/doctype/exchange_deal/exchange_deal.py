@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import flt, nowdatetime
+from frappe.utils import flt
 
 class ExchangeDeal(Document):
 	def validate(self):

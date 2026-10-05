@@ -44,9 +44,7 @@ payment_store.DeskCore = class DeskCore {
 			<div class="ps-exchange-card">
 				<div class="ps-client-section">
 					<label>العميل</label>
-					<div class="control-input-wrapper">
-						<input type="text" class="form-control" id="ps-customer" placeholder="ابحث بالاسم، الهاتف، أو الهوية...">
-					</div>
+					<div id="ps-customer-wrapper"></div>
 				</div>
 				<div class="ps-rate-section">
 					<label>سعر الصرف</label>
@@ -102,6 +100,20 @@ payment_store.DeskCore = class DeskCore {
 		this.wrapper.find('#ps-submit-deal').on('click', function() {
 			me.submit_deal();
 		});
+
+		// Render Frappe Link Field for Customer
+		this.customer_field = frappe.ui.form.make_control({
+			df: {
+				fieldtype: "Link",
+				options: "Customer",
+				fieldname: "customer",
+				label: "العميل",
+				only_select: 0,
+				placeholder: "ابحث أو أضف عميل جديد..."
+			},
+			parent: this.wrapper.find('#ps-customer-wrapper'),
+			render_input: true
+		});
 	}
 
 	load_data() {
@@ -126,7 +138,7 @@ payment_store.DeskCore = class DeskCore {
 		let usd = this.wrapper.find('#ps-usd').val();
 		let iqd = this.wrapper.find('#ps-iqd').val();
 		let rate = this.wrapper.find('#ps-rate').val();
-		let customer = this.wrapper.find('#ps-customer').val();
+		let customer = this.customer_field.get_value();
 		
 		if (!usd || !iqd || !customer) {
 			frappe.msgprint("يرجى إدخال جميع الحقول (العميل والمبلغ).");
