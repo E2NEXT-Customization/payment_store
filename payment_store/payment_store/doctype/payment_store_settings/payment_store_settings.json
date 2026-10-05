@@ -7,7 +7,25 @@
  "engine": "InnoDB",
  "field_order": [
   "company",
-  "iqd_rounding_step"
+  "currencies",
+  "iqd_rounding_step",
+  "accounts_section",
+  "exchange_profit_loss_account",
+  "cash_over_short_account",
+  "rounding_account",
+  "cash_in_transit_account",
+  "per_currency_customer_receivable",
+  "trading_section",
+  "quote_validity_minutes",
+  "allowed_custom_rate_band",
+  "min_spread_guard",
+  "variance_tolerance",
+  "compliance_section",
+  "traveler_limit_usd",
+  "traveler_limit_period",
+  "receipt_section",
+  "receipt_header",
+  "receipt_footer"
  ],
  "fields": [
   {
@@ -21,16 +39,113 @@
   {
    "default": "250",
    "fieldname": "iqd_rounding_step",
+   "fieldtype": "Int",
+   "label": "IQD Rounding Step"
+  },
+  {
+   "fieldname": "currencies",
+   "fieldtype": "Table",
+   "label": "Currencies",
+   "options": "PS Currency Row"
+  },
+  {
+   "fieldname": "accounts_section",
+   "fieldtype": "Section Break",
+   "label": "Accounts"
+  },
+  {
+   "fieldname": "exchange_profit_loss_account",
+   "fieldtype": "Link",
+   "label": "Exchange Profit/Loss",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cash_over_short_account",
+   "fieldtype": "Link",
+   "label": "Cash Over/Short",
+   "options": "Account"
+  },
+  {
+   "fieldname": "rounding_account",
+   "fieldtype": "Link",
+   "label": "Rounding Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cash_in_transit_account",
+   "fieldtype": "Link",
+   "label": "Cash-in-Transit Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "per_currency_customer_receivable",
+   "fieldtype": "Link",
+   "label": "Per-Currency Customer Receivable Root",
+   "options": "Account"
+  },
+  {
+   "fieldname": "trading_section",
+   "fieldtype": "Section Break",
+   "label": "Trading Rules"
+  },
+  {
+   "default": "3",
+   "fieldname": "quote_validity_minutes",
+   "fieldtype": "Int",
+   "label": "Quote Validity Minutes"
+  },
+  {
+   "fieldname": "allowed_custom_rate_band",
+   "fieldtype": "Percent",
+   "label": "Allowed Custom Rate Band (\u00b1 %)"
+  },
+  {
+   "fieldname": "min_spread_guard",
+   "fieldtype": "Currency",
+   "label": "Min Spread Guard"
+  },
+  {
+   "fieldname": "variance_tolerance",
+   "fieldtype": "Currency",
+   "label": "Variance Tolerance Per Currency"
+  },
+  {
+   "fieldname": "compliance_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance Limits"
+  },
+  {
+   "fieldname": "traveler_limit_usd",
+   "fieldtype": "Currency",
+   "label": "Traveler Limit (USD)"
+  },
+  {
+   "fieldname": "traveler_limit_period",
    "fieldtype": "Select",
-   "label": "IQD Rounding Step",
-   "options": "1\n250\n500\n1000"
+   "label": "Traveler Limit Period",
+   "options": "\nTransaction\nDay\nYear"
+  },
+  {
+   "fieldname": "receipt_section",
+   "fieldtype": "Section Break",
+   "label": "Receipt Setup"
+  },
+  {
+   "fieldname": "receipt_header",
+   "fieldtype": "Text",
+   "label": "Receipt Header"
+  },
+  {
+   "fieldname": "receipt_footer",
+   "fieldtype": "Text",
+   "label": "Receipt Footer"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-10-05 12:19:03.270078",
+ "modified": "2026-10-05 13:19:09.799318",
  "modified_by": "Administrator",
  "module": "Payment Store",
  "name": "Payment Store Settings",

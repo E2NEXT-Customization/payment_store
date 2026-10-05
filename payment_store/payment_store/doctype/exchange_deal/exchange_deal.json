@@ -12,11 +12,10 @@
   "currency",
   "customer",
   "cashbox",
-  "session",
   "column_break_1",
   "rate",
   "rate_source",
-  "foreign_amount",
+  "usd_amount",
   "iqd_amount",
   "last_edited_field",
   "payment_section",
@@ -26,17 +25,16 @@
   "accounting_section",
   "cost_rate",
   "profit_iqd",
+  "wac_before",
+  "wac_after",
   "journal_entry",
-  "wac_snapshot_before",
-  "wac_snapshot_after",
   "compliance_section",
-  "notes_verified",
   "approval_status",
+  "approval_reason",
   "compliance_flags",
   "system_section",
   "quote_id",
-  "idempotency_key",
-  "amended_from"
+  "idempotency_key"
  ],
  "fields": [
   {
@@ -44,7 +42,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Deal Type",
-   "options": "Sell FC\nBuy FC",
+   "options": "Sell\nBuy",
    "reqd": 1
   },
   {
@@ -80,13 +78,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "session",
-   "fieldtype": "Link",
-   "label": "Session",
-   "options": "Cashbox Session",
-   "reqd": 1
-  },
-  {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
   },
@@ -104,23 +95,17 @@
    "reqd": 1
   },
   {
-   "fieldname": "foreign_amount",
-   "fieldtype": "Currency",
-   "label": "Foreign Amount",
-   "reqd": 1
-  },
-  {
    "fieldname": "iqd_amount",
    "fieldtype": "Currency",
    "label": "IQD Amount",
    "reqd": 1
   },
   {
-   "default": "foreign_amount",
+   "default": "usd_amount",
    "fieldname": "last_edited_field",
    "fieldtype": "Select",
    "label": "Last Edited Field",
-   "options": "foreign_amount\niqd_amount"
+   "options": "usd_amount\niqd_amount"
   },
   {
    "fieldname": "payment_section",
@@ -169,27 +154,9 @@
    "read_only": 1
   },
   {
-   "fieldname": "wac_snapshot_before",
-   "fieldtype": "Currency",
-   "label": "WAC Before",
-   "read_only": 1
-  },
-  {
-   "fieldname": "wac_snapshot_after",
-   "fieldtype": "Currency",
-   "label": "WAC After",
-   "read_only": 1
-  },
-  {
    "fieldname": "compliance_section",
    "fieldtype": "Section Break",
-   "label": "Compliance"
-  },
-  {
-   "default": "0",
-   "fieldname": "notes_verified",
-   "fieldtype": "Check",
-   "label": "Notes Verified"
+   "label": "Compliance & Approvals"
   },
   {
    "default": "Not required",
@@ -223,21 +190,34 @@
    "unique": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Exchange Deal",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "fieldname": "usd_amount",
+   "fieldtype": "Currency",
+   "label": "USD Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wac_before",
+   "fieldtype": "Currency",
+   "label": "WAC Before",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wac_after",
+   "fieldtype": "Currency",
+   "label": "WAC After",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_reason",
+   "fieldtype": "Small Text",
+   "label": "Approval Reason"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05 12:34:43.693251",
+ "modified": "2026-10-05 13:19:10.327062",
  "modified_by": "Administrator",
  "module": "Payment Store",
  "name": "Exchange Deal",

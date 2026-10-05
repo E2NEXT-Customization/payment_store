@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestSpotCheck(FrappeTestCase):
+class TestCashboxClosing(FrappeTestCase):
 	pass

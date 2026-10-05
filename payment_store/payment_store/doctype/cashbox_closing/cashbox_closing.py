@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class CashboxReconciliation(Document):
+class CashboxClosing(Document):
 	pass

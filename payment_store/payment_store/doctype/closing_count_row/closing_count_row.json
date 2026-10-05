@@ -1,14 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2026-10-05 12:27:57.262553",
+ "creation": "2026-10-05 13:19:09.334178",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "currency",
-  "account",
-  "max_cash_limit"
+  "denomination",
+  "qty"
  ],
  "fields": [
   {
@@ -20,28 +20,28 @@
    "reqd": 1
   },
   {
-   "fieldname": "account",
-   "fieldtype": "Link",
+   "fieldname": "denomination",
+   "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Account",
-   "options": "Account",
+   "label": "Denomination",
    "reqd": 1
   },
   {
-   "fieldname": "max_cash_limit",
-   "fieldtype": "Currency",
+   "fieldname": "qty",
+   "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Max Cash Limit"
+   "label": "Qty",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-10-05 12:27:57.262553",
+ "modified": "2026-10-05 13:19:09.334178",
  "modified_by": "Administrator",
  "module": "Payment Store",
- "name": "Cashbox Account",
+ "name": "Closing Count Row",
  "owner": "Administrator",
  "permissions": [],
  "row_format": "Dynamic",

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class DenominationCount(Document):
+class PSCurrencyRow(Document):
 	pass

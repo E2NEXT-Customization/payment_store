@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestCashboxLedgerEntry(FrappeTestCase):
+class TestPSDailyRate(FrappeTestCase):
 	pass

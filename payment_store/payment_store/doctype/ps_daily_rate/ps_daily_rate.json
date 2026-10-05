@@ -1,33 +1,21 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:ERB-{currency}-{effective_from}",
- "creation": "2026-10-05 12:27:56.826265",
+ "autoname": "format:RATE-{YYYY}-{MM}-{DD}-{currency}",
+ "creation": "2026-10-05 13:19:09.585981",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "currency",
   "date",
-  "effective_from",
-  "is_active",
-  "column_break_1",
+  "currency",
   "cbi_official_rate",
   "company_buy_rate",
   "company_sell_rate",
-  "section_break_1",
   "set_by",
-  "approved_by"
+  "is_active"
  ],
  "fields": [
-  {
-   "fieldname": "currency",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Currency",
-   "options": "Currency",
-   "reqd": 1
-  },
   {
    "default": "Today",
    "fieldname": "date",
@@ -37,22 +25,13 @@
    "reqd": 1
   },
   {
-   "default": "Now",
-   "fieldname": "effective_from",
-   "fieldtype": "Datetime",
+   "default": "USD",
+   "fieldname": "currency",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Effective From",
+   "label": "Currency",
+   "options": "Currency",
    "reqd": 1
-  },
-  {
-   "default": "1",
-   "fieldname": "is_active",
-   "fieldtype": "Check",
-   "label": "Is Active"
-  },
-  {
-   "fieldname": "column_break_1",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "cbi_official_rate",
@@ -64,21 +43,19 @@
   {
    "fieldname": "company_buy_rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Company Buy Rate",
    "reqd": 1
   },
   {
    "fieldname": "company_sell_rate",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Company Sell Rate",
    "reqd": 1
   },
   {
-   "fieldname": "section_break_1",
-   "fieldtype": "Section Break"
-  },
-  {
-   "default": "frappe.session.user",
+   "default": "Administrator",
    "fieldname": "set_by",
    "fieldtype": "Link",
    "label": "Set By",
@@ -86,34 +63,22 @@
    "read_only": 1
   },
   {
-   "fieldname": "approved_by",
-   "fieldtype": "Link",
-   "label": "Approved By",
-   "options": "User"
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-05 12:27:56.826265",
+ "modified": "2026-10-05 13:19:09.585981",
  "modified_by": "Administrator",
  "module": "Payment Store",
- "name": "Exchange Rate Board",
- "naming_rule": "Expression",
+ "name": "PS Daily Rate",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
   {
    "create": 1,
    "delete": 1,

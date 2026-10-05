@@ -1,23 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:CR-{YYYY}-{MM}-{#####}",
- "creation": "2026-10-05 13:00:28.337214",
+ "autoname": "format:CBC-{YYYY}-{MM}-{#####}",
+ "creation": "2026-10-05 13:19:11.065425",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "cashbox",
-  "session",
-  "column_break_1",
+  "cutoff_datetime",
   "status",
-  "denominations_section",
-  "denominations",
-  "reconciliation_results_section",
-  "results",
-  "explainer_output",
+  "counts_section",
+  "counts",
+  "reconciliation_section",
+  "counted_totals",
+  "expected",
+  "variance",
   "approval_section",
-  "variance_reason",
+  "reason",
+  "approved_by",
+  "system_section",
+  "explainer_result",
   "z_report_hash",
   "amended_from"
  ],
@@ -31,16 +34,12 @@
    "reqd": 1
   },
   {
-   "fieldname": "session",
-   "fieldtype": "Link",
+   "default": "Now",
+   "fieldname": "cutoff_datetime",
+   "fieldtype": "Datetime",
    "in_list_view": 1,
-   "label": "Session",
-   "options": "Cashbox Session",
+   "label": "Cutoff Datetime",
    "reqd": 1
-  },
-  {
-   "fieldname": "column_break_1",
-   "fieldtype": "Column Break"
   },
   {
    "default": "Draft",
@@ -50,50 +49,73 @@
    "options": "Draft\nPending Approval\nApproved\nRejected\nSubmitted"
   },
   {
-   "fieldname": "denominations_section",
+   "fieldname": "counts_section",
    "fieldtype": "Section Break",
-   "label": "Denominations"
+   "label": "Blind Count"
   },
   {
-   "fieldname": "denominations",
+   "fieldname": "counts",
    "fieldtype": "Table",
-   "label": "Denominations",
-   "options": "Denomination Count"
+   "label": "Counts",
+   "options": "Closing Count Row"
   },
   {
-   "fieldname": "reconciliation_results_section",
+   "fieldname": "reconciliation_section",
    "fieldtype": "Section Break",
-   "label": "Results"
+   "label": "Reconciliation"
   },
   {
-   "fieldname": "results",
+   "fieldname": "counted_totals",
    "fieldtype": "Code",
-   "label": "Reconciliation Results",
+   "label": "Counted Totals",
    "options": "JSON",
    "read_only": 1
   },
   {
-   "fieldname": "explainer_output",
+   "fieldname": "expected",
    "fieldtype": "Code",
-   "label": "Explainer Diagnosis",
+   "label": "Expected Balances",
    "options": "JSON",
    "read_only": 1
   },
   {
-   "depends_on": "eval:doc.status=='Pending Approval'",
+   "fieldname": "variance",
+   "fieldtype": "Code",
+   "label": "Variance",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
    "fieldname": "approval_section",
    "fieldtype": "Section Break",
-   "label": "Variance Approval"
+   "label": "Approvals"
   },
   {
-   "fieldname": "variance_reason",
+   "fieldname": "reason",
    "fieldtype": "Small Text",
    "label": "Variance Reason"
   },
   {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "system_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "explainer_result",
+   "fieldtype": "Code",
+   "label": "Explainer Result",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
    "fieldname": "z_report_hash",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Z-Report Hash",
    "read_only": 1
   },
@@ -102,7 +124,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Cashbox Reconciliation",
+   "options": "Cashbox Closing",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -112,27 +134,13 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-10-05 13:00:28.337214",
+ "modified": "2026-10-05 13:19:11.065425",
  "modified_by": "Administrator",
  "module": "Payment Store",
- "name": "Cashbox Reconciliation",
+ "name": "Cashbox Closing",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
-  {
-   "cancel": 1,
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "submit": 1,
-   "write": 1
-  },
   {
    "cancel": 1,
    "create": 1,
@@ -158,18 +166,6 @@
    "role": "Payment Store Cashier",
    "share": 1,
    "submit": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Payment Store Auditor",
-   "share": 1,
    "write": 1
   }
  ],

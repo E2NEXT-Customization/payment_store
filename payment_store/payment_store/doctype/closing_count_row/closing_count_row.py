@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class SpotCheck(Document):
+class ClosingCountRow(Document):
 	pass

@@ -9,21 +9,18 @@
  "field_order": [
   "cashbox_name",
   "branch",
-  "type",
-  "is_active",
-  "column_break_1",
   "iqd_account",
-  "accounts_section",
-  "accounts",
-  "users_section",
-  "users"
+  "usd_account",
+  "assigned_users",
+  "is_active",
+  "locked_until"
  ],
  "fields": [
   {
    "fieldname": "cashbox_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Cashbox Name",
+   "label": "Name",
    "reqd": 1,
    "unique": 1
   },
@@ -34,22 +31,10 @@
    "options": "Branch"
   },
   {
-   "fieldname": "type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Type",
-   "options": "Main\nCashier\nVault",
-   "reqd": 1
-  },
-  {
    "default": "1",
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Is Active"
-  },
-  {
-   "fieldname": "column_break_1",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "iqd_account",
@@ -60,32 +45,30 @@
    "reqd": 1
   },
   {
-   "fieldname": "accounts_section",
-   "fieldtype": "Section Break",
-   "label": "Foreign Currency Accounts"
+   "fieldname": "usd_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "USD Account",
+   "options": "Account",
+   "reqd": 1
   },
   {
-   "fieldname": "accounts",
+   "fieldname": "assigned_users",
    "fieldtype": "Table",
-   "label": "Accounts",
-   "options": "Cashbox Account"
-  },
-  {
-   "fieldname": "users_section",
-   "fieldtype": "Section Break",
-   "label": "Assigned Users"
-  },
-  {
-   "fieldname": "users",
-   "fieldtype": "Table",
-   "label": "Users",
+   "label": "Assigned Users",
    "options": "Cashbox User"
+  },
+  {
+   "fieldname": "locked_until",
+   "fieldtype": "Datetime",
+   "label": "Locked Until",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-05 12:27:57.573651",
+ "modified": "2026-10-05 13:19:10.021034",
  "modified_by": "Administrator",
  "module": "Payment Store",
  "name": "Cashbox",
