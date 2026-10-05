@@ -1,12 +1,36 @@
 .ps-desk-container {
-	padding: 15px;
-	background-color: var(--bg-color);
-	border-radius: var(--border-radius);
-	box-shadow: var(--shadow-base);
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
-
-.ps-header {
-	margin-bottom: 20px;
-	border-bottom: 1px solid var(--border-color);
-	padding-bottom: 10px;
+.ps-live-strip {
+    background: #343a40;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+.ps-exchange-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.ps-chips .ps-chip {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.ps-quote-lock {
+    font-size: 0.9em;
+    color: #d9534f;
+    margin-top: 5px;
+    text-align: left;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
 }

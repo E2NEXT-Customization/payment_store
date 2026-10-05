@@ -1,0 +1,8 @@
+{
+    "js/ps_desk_core.js": [
+        "public/js/ps_desk_core.js"
+    ],
+    "css/ps_desk.css": [
+        "public/css/ps_desk.css"
+    ]
+}
