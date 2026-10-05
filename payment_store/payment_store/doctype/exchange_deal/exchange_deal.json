@@ -1,0 +1,305 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:PS-DL-.YYYY.-.#####",
+ "creation": "2026-10-05 12:34:43.693251",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "deal_type",
+  "deal_mode",
+  "currency",
+  "customer",
+  "cashbox",
+  "session",
+  "column_break_1",
+  "rate",
+  "rate_source",
+  "foreign_amount",
+  "iqd_amount",
+  "last_edited_field",
+  "payment_section",
+  "payment_mode",
+  "paid_amount",
+  "rounding_diff",
+  "accounting_section",
+  "cost_rate",
+  "profit_iqd",
+  "journal_entry",
+  "wac_snapshot_before",
+  "wac_snapshot_after",
+  "compliance_section",
+  "notes_verified",
+  "approval_status",
+  "compliance_flags",
+  "system_section",
+  "quote_id",
+  "idempotency_key",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "deal_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Deal Type",
+   "options": "Sell FC\nBuy FC",
+   "reqd": 1
+  },
+  {
+   "fieldname": "deal_mode",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Deal Mode",
+   "options": "Official\nCustom",
+   "reqd": 1
+  },
+  {
+   "default": "USD",
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cashbox",
+   "fieldtype": "Link",
+   "label": "Cashbox",
+   "options": "Cashbox",
+   "reqd": 1
+  },
+  {
+   "fieldname": "session",
+   "fieldtype": "Link",
+   "label": "Session",
+   "options": "Cashbox Session",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rate_source",
+   "fieldtype": "Select",
+   "label": "Rate Source",
+   "options": "Board\nManual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "foreign_amount",
+   "fieldtype": "Currency",
+   "label": "Foreign Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "iqd_amount",
+   "fieldtype": "Currency",
+   "label": "IQD Amount",
+   "reqd": 1
+  },
+  {
+   "default": "foreign_amount",
+   "fieldname": "last_edited_field",
+   "fieldtype": "Select",
+   "label": "Last Edited Field",
+   "options": "foreign_amount\niqd_amount"
+  },
+  {
+   "fieldname": "payment_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Cash",
+   "fieldname": "payment_mode",
+   "fieldtype": "Select",
+   "label": "Payment Mode",
+   "options": "Cash\nOn account\nPartial"
+  },
+  {
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount"
+  },
+  {
+   "fieldname": "rounding_diff",
+   "fieldtype": "Currency",
+   "label": "Rounding Diff",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accounting_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting"
+  },
+  {
+   "fieldname": "cost_rate",
+   "fieldtype": "Currency",
+   "label": "Cost Rate (WAC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "profit_iqd",
+   "fieldtype": "Currency",
+   "label": "Profit (IQD)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wac_snapshot_before",
+   "fieldtype": "Currency",
+   "label": "WAC Before",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wac_snapshot_after",
+   "fieldtype": "Currency",
+   "label": "WAC After",
+   "read_only": 1
+  },
+  {
+   "fieldname": "compliance_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance"
+  },
+  {
+   "default": "0",
+   "fieldname": "notes_verified",
+   "fieldtype": "Check",
+   "label": "Notes Verified"
+  },
+  {
+   "default": "Not required",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "Not required\nPending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "compliance_flags",
+   "fieldtype": "Code",
+   "label": "Compliance Flags",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "system_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "quote_id",
+   "fieldtype": "Data",
+   "label": "Quote ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "idempotency_key",
+   "fieldtype": "Data",
+   "label": "Idempotency Key",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Exchange Deal",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-10-05 12:34:43.693251",
+ "modified_by": "Administrator",
+ "module": "Payment Store",
+ "name": "Exchange Deal",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Payment Store Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Payment Store Cashier",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Payment Store Auditor",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
