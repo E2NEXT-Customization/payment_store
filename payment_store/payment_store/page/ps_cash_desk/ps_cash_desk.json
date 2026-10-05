@@ -1,0 +1,26 @@
+{
+ "content": null,
+ "creation": "2026-10-05 12:42:23.292372",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2026-10-05 12:42:23.292372",
+ "modified_by": "Administrator",
+ "module": "Payment Store",
+ "name": "ps-cash-desk",
+ "owner": "Administrator",
+ "page_name": "ps-cash-desk",
+ "roles": [
+  {
+   "role": "Payment Store Manager"
+  },
+  {
+   "role": "Payment Store Cashier"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "\u0627\u0644\u0642\u0627\u0635\u0629"
+}

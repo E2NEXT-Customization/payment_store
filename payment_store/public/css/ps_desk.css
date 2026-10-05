@@ -1,0 +1,12 @@
+.ps-desk-container {
+	padding: 15px;
+	background-color: var(--bg-color);
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow-base);
+}
+
+.ps-header {
+	margin-bottom: 20px;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 10px;
+}

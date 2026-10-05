@@ -10,3 +10,7 @@
 ## Phase 4: Cashbox Transaction & Customer Accounts
 - **Decision:** Injected a Custom Field `ps_currency_accounts` (Customer Currency Account child table) into the standard `Customer` DocType instead of creating a separate parallel DocType. This keeps the UX unified and avoids duplication.
 - **Decision:** Added `Cashbox Transaction` with logic to support two-step transfers (via `transfer_status` and `incoming_transfer_reference`) built into the schema.
+
+## Phase 5: Desks & Workspace UI
+- **Decision:** Scaffolded all required desk Pages natively in Frappe and linked them to `Payment Store Manager` and `Payment Store Cashier` roles.
+- **Decision:** Extracted common desk component logic into a central reusable library `ps_desk_core.js` injected globally via `hooks.py`, ensuring consistent RTL, mobile-first design across all desks.
