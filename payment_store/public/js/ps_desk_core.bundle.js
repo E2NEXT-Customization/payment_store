@@ -32,10 +32,57 @@ payment_store.DeskCore = class DeskCore {
 		if (['official_sell', 'custom_sell', 'buy'].includes(this.desk_type)) {
 			return this.get_exchange_html();
 		}
-		if (this.desk_type === 'cash') return `<h3>واجهة القاصة (Cash In/Out/Transfer)</h3>`;
-		if (this.desk_type === 'closing') return `<h3>واجهة الجرد والإغلاق</h3>`;
-		if (this.desk_type === 'control') return `<h3>برج المراقبة (الإحصائيات)</h3>`;
+		if (this.desk_type === 'cash') return this.get_cash_html();
+		if (this.desk_type === 'closing') return `<h3>واجهة الجرد والإغلاق (تحت الإنشاء)</h3>`;
+		if (this.desk_type === 'control') return `<h3>برج المراقبة (تحت الإنشاء)</h3>`;
 		return ``;
+	}
+
+	get_cash_html() {
+		return `
+			<div class="ps-exchange-card">
+				<h4>تسجيل حركة صندوق</h4>
+				<div class="row">
+					<div class="col-xs-6">
+						<label>نوع الحركة</label>
+						<select class="form-control" id="ps-cash-type">
+							<option value="Cash In">إيداع نقدي عادي</option>
+							<option value="Cash Out">سحب نقدي عادي</option>
+							<option value="Expense">مصروفات</option>
+							<option value="Customer Deposit">إيداع أمانة عميل</option>
+							<option value="Customer Withdrawal">سحب أمانة عميل</option>
+							<option value="Transfer">تحويل إلى قاصة أخرى</option>
+						</select>
+					</div>
+					<div class="col-xs-6">
+						<label>العملة</label>
+						<select class="form-control" id="ps-cash-currency">
+							<option value="USD">USD</option>
+							<option value="IQD">IQD</option>
+						</select>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-xs-6">
+						<label>المبلغ</label>
+						<input type="number" class="form-control text-center" id="ps-cash-amount" placeholder="0">
+					</div>
+					<div class="col-xs-6">
+						<label>الطرف المعني (عميل / قاصة)</label>
+						<div id="ps-party-wrapper"></div>
+					</div>
+				</div>
+				<div class="row mt-3">
+					<div class="col-xs-12">
+						<label>البيان / ملاحظات</label>
+						<input type="text" class="form-control" id="ps-cash-remarks" placeholder="...">
+					</div>
+				</div>
+				<div class="ps-action-section mt-4">
+					<button class="btn btn-warning btn-block btn-lg" id="ps-submit-cash">تنفيذ الحركة</button>
+				</div>
+			</div>
+		`;
 	}
 
 	get_exchange_html() {
@@ -101,19 +148,52 @@ payment_store.DeskCore = class DeskCore {
 			me.submit_deal();
 		});
 
-		// Render Frappe Link Field for Customer
-		this.customer_field = frappe.ui.form.make_control({
-			df: {
-				fieldtype: "Link",
-				options: "Customer",
-				fieldname: "customer",
-				label: "العميل",
-				only_select: 0,
-				placeholder: "ابحث أو أضف عميل جديد..."
-			},
-			parent: this.wrapper.find('#ps-customer-wrapper'),
-			render_input: true
-		});
+		// Render Frappe Link Field for Customer if it's an exchange desk
+		if (['official_sell', 'custom_sell', 'buy'].includes(this.desk_type)) {
+			this.customer_field = frappe.ui.form.make_control({
+				df: {
+					fieldtype: "Link",
+					options: "Customer",
+					fieldname: "customer",
+					label: "العميل",
+					only_select: 0,
+					placeholder: "ابحث أو أضف عميل جديد..."
+				},
+				parent: this.wrapper.find('#ps-customer-wrapper'),
+				render_input: true
+			});
+		}
+
+		// Render Frappe Link Field for Party (Cash Desk)
+		if (this.desk_type === 'cash') {
+			this.party_field = frappe.ui.form.make_control({
+				df: {
+					fieldtype: "Dynamic Link",
+					options: "party_type", // Will be overridden manually via query if needed
+					fieldname: "party",
+					label: "الجهة",
+					only_select: 0,
+					placeholder: "اختر العميل أو القاصة الهدف..."
+				},
+				parent: this.wrapper.find('#ps-party-wrapper'),
+				render_input: true
+			});
+			// Hack dynamic link to just act as a Customer link by default
+			this.party_field.df.options = "Customer";
+			
+			this.wrapper.find('#ps-cash-type').on('change', function() {
+				let type = $(this).val();
+				if (type === 'Transfer') {
+					me.party_field.df.options = "Cashbox";
+				} else {
+					me.party_field.df.options = "Customer";
+				}
+			});
+			
+			this.wrapper.find('#ps-submit-cash').on('click', function() {
+				me.submit_cash_transaction();
+			});
+		}
 	}
 
 	load_data() {
@@ -171,6 +251,62 @@ payment_store.DeskCore = class DeskCore {
 						callback: (res) => {
 							frappe.show_alert({message: "تم تنفيذ الصفقة بنجاح!", indicator: 'green'});
 							this.wrapper.find('#ps-usd').val('').trigger('input');
+						}
+					});
+				}
+			}
+		});
+	}
+
+	submit_cash_transaction() {
+		let type = this.wrapper.find('#ps-cash-type').val();
+		let currency = this.wrapper.find('#ps-cash-currency').val();
+		let amount = this.wrapper.find('#ps-cash-amount').val();
+		let remarks = this.wrapper.find('#ps-cash-remarks').val();
+		let party = this.party_field ? this.party_field.get_value() : null;
+		
+		if (!amount || amount <= 0) {
+			frappe.msgprint("يرجى إدخال مبلغ صحيح.");
+			return;
+		}
+		if (['Customer Deposit', 'Customer Withdrawal'].includes(type) && !party) {
+			frappe.msgprint("يرجى اختيار العميل.");
+			return;
+		}
+		if (type === 'Transfer' && !party) {
+			frappe.msgprint("يرجى تحديد القاصة الهدف.");
+			return;
+		}
+
+		let doc = {
+			doctype: "Cashbox Transaction",
+			type: type,
+			cashbox: "Main Cashbox", // Hardcoded for demo
+			currency: currency,
+			amount: amount,
+			remarks: remarks
+		};
+
+		if (type === 'Transfer') {
+			doc.destination_cashbox = party;
+			doc.transfer_status = "Sent";
+		} else if (party) {
+			doc.party_type = "Customer";
+			doc.party = party;
+		}
+
+		frappe.call({
+			method: "frappe.client.insert",
+			args: { doc: doc },
+			callback: (r) => {
+				if(!r.exc) {
+					frappe.call({
+						method: "frappe.client.submit",
+						args: { doc: r.message },
+						callback: (res) => {
+							frappe.show_alert({message: "تم تنفيذ الحركة بنجاح!", indicator: 'green'});
+							this.wrapper.find('#ps-cash-amount').val('');
+							if(this.party_field) this.party_field.set_value('');
 						}
 					});
 				}
