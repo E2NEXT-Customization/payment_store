@@ -14,3 +14,7 @@
 ## Phase 5: Desks & Workspace UI
 - **Decision:** Scaffolded all required desk Pages natively in Frappe and linked them to `Payment Store Manager` and `Payment Store Cashier` roles.
 - **Decision:** Extracted common desk component logic into a central reusable library `ps_desk_core.js` injected globally via `hooks.py`, ensuring consistent RTL, mobile-first design across all desks.
+
+## Phase 6: Reconciliation & Explainer Engine
+- **Decision:** Structured the Explainer Engine in dedicated `reconciliation` modules (`explainer.py`, `vectors.py`, `bisect.py`) to run deterministically offline via vector arithmetic, keeping the DocType logic clean and allowing independent unit testing.
+- **Decision:** Added `Denomination Count` as a reusable child table to enforce blind count per denomination.
