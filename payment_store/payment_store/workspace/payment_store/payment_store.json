@@ -65,17 +65,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "\u0628\u0631\u062c \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629",
-   "link_count": 0,
-   "link_to": "ps-control-tower",
-   "link_type": "Page",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Deals",
+   "label": "\u0627\u0644\u0635\u0641\u0642\u0627\u062a (Deals)",
    "link_count": 0,
    "link_to": "Exchange Deal",
    "link_type": "DocType",
@@ -85,7 +75,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Transactions",
+   "label": "\u062d\u0631\u0643\u0627\u062a \u0627\u0644\u0642\u0627\u0635\u0629 (Transactions)",
    "link_count": 0,
    "link_to": "Cashbox Transaction",
    "link_type": "DocType",
@@ -95,7 +85,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Closings",
+   "label": "\u0627\u0644\u0625\u063a\u0644\u0627\u0642\u0627\u062a (Closings)",
    "link_count": 0,
    "link_to": "Cashbox Closing",
    "link_type": "DocType",
@@ -105,17 +95,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Cashboxes",
-   "link_count": 0,
-   "link_to": "Cashbox",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Daily Rates",
+   "label": "\u0623\u0633\u0639\u0627\u0631 \u0627\u0644\u0635\u0631\u0641 (Rates)",
    "link_count": 0,
    "link_to": "PS Daily Rate",
    "link_type": "DocType",
@@ -125,7 +105,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Settings",
+   "label": "\u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a (Settings)",
    "link_count": 0,
    "link_to": "Payment Store Settings",
    "link_type": "DocType",
@@ -133,7 +113,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-10-05 14:04:24.077310",
+ "modified": "2026-10-06 09:08:51.966245",
  "modified_by": "Administrator",
  "module": "Payment Store",
  "name": "Payment Store",
@@ -143,6 +123,97 @@
  "quick_lists": [],
  "roles": [],
  "sequence_id": 1.0,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "money",
+   "label": "\u0628\u064a\u0639 \u062f\u0648\u0644\u0627\u0631 \u2013 \u0633\u0639\u0631 \u0631\u0633\u0645\u064a",
+   "link_to": "ps-official-sale",
+   "type": "Page"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "money",
+   "label": "\u0628\u064a\u0639 \u062f\u0648\u0644\u0627\u0631 \u2013 \u0633\u0639\u0631 \u062e\u0627\u0635",
+   "link_to": "ps-custom-sale",
+   "type": "Page"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "money",
+   "label": "\u0634\u0631\u0627\u0621 \u062f\u0648\u0644\u0627\u0631",
+   "link_to": "ps-buy-desk",
+   "type": "Page"
+  },
+  {
+   "color": "Gray",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "safe",
+   "label": "\u0627\u0644\u0642\u0627\u0635\u0629",
+   "link_to": "ps-cash-desk",
+   "type": "Page"
+  },
+  {
+   "color": "Red",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "check",
+   "label": "\u0627\u0644\u062c\u0631\u062f \u0648\u0627\u0644\u0625\u063a\u0644\u0627\u0642",
+   "link_to": "ps-closing-desk",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "list",
+   "label": "\u0627\u0644\u0635\u0641\u0642\u0627\u062a (Deals)",
+   "link_to": "Exchange Deal",
+   "type": "DocType"
+  },
+  {
+   "color": "Gray",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "list",
+   "label": "\u062d\u0631\u0643\u0627\u062a \u0627\u0644\u0642\u0627\u0635\u0629 (Transactions)",
+   "link_to": "Cashbox Transaction",
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "list",
+   "label": "\u0627\u0644\u0625\u063a\u0644\u0627\u0642\u0627\u062a (Closings)",
+   "link_to": "Cashbox Closing",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "list",
+   "label": "\u0623\u0633\u0639\u0627\u0631 \u0627\u0644\u0635\u0631\u0641 (Rates)",
+   "link_to": "PS Daily Rate",
+   "type": "DocType"
+  },
+  {
+   "color": "Gray",
+   "doc_view": "",
+   "format": "Standard",
+   "icon": "setting",
+   "label": "\u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a (Settings)",
+   "link_to": "Payment Store Settings",
+   "type": "DocType"
+  }
+ ],
  "title": "Payment Store"
 }
